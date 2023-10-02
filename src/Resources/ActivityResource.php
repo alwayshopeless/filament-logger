@@ -40,7 +40,7 @@ class ActivityResource extends Resource
                         TextInput::make('causer_id')
                             ->afterStateHydrated(function ($component, ?Model $record) {
                                 /** @phpstan-ignore-next-line */
-                                return $component->state($record->causer?->name);
+                                return $component->state($record->causer?->name ?? $record->causer?->email ?? $record->causer->getName() ?? '');
                             })
                             ->label(__('filament-logger::filament-logger.resource.label.user')),
 
